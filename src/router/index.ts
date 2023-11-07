@@ -2,6 +2,7 @@ import HomeView from '@/views/HomeView.vue'
 import MealsByLetterView from '@/views/MealsByLetterView.vue'
 import MealsByNameView from '@/views/MealsByNameView.vue'
 import MealsByIngredientView from '@/views/MealsByIngredientView.vue'
+import MealDetailsView from '@/views/MealDetailsView.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
@@ -24,6 +25,11 @@ const routes: RouteRecordRaw[] = [
     path: '/by-letter/:letter?',
     name: 'byLetter',
     component: MealsByLetterView
+  },
+  {
+    path: '/meal/:id',
+    name: 'mealDetails',
+    component: MealDetailsView
   }
 ]
 

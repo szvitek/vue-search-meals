@@ -1,5 +1,7 @@
 import HomeView from '@/views/HomeView.vue'
-import MealListView from '@/views/MealListView.vue'
+import MealsByLetterView from '@/views/MealsByLetterView.vue'
+import MealsByNameView from '@/views/MealsByNameView.vue'
+import MealsByIngredientView from '@/views/MealsByIngredientView.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
@@ -9,9 +11,19 @@ const routes: RouteRecordRaw[] = [
     component: HomeView
   },
   {
-    path: '/letter/:letter',
+    path: '/by-name/:name?',
+    name: 'byName',
+    component: MealsByNameView
+  },
+  {
+    path: '/by-ingredient/:ingredient?',
+    name: 'byIngredient',
+    component: MealsByIngredientView
+  },
+  {
+    path: '/by-letter/:letter?',
     name: 'byLetter',
-    component: MealListView
+    component: MealsByLetterView
   }
 ]
 

@@ -1,29 +1,19 @@
 <script setup lang="ts">
+import axiosClient from '@/axiosClient'
 import { useMealStore } from '@/stores/meals'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const mealStore = useMealStore()
 const { meals } = storeToRefs(mealStore)
 console.log('meals', meals)
+
+onMounted(async () => {
+  const response = await axiosClient.get('list.php?i=list')
+  console.log(response.data)
+})
 </script>
 
 <template>
-  <div class="flex flex-col p-8">
-    <input
-      type="text"
-      placeholder="Search for meals"
-      class="rounded border-2 border-gray-200 w-full"
-    />
-
-    <div class="flex gap-2 justify-center mt-2">
-      <RouterLink
-        v-for="letter of letters.split('')"
-        :key="letter"
-        :to="{ name: 'byLetter', params: { letter } }"
-      >
-        {{ letter }}
-      </RouterLink>
-    </div>
-  </div>
+  <div class="flex flex-col p-8">Home</div>
 </template>

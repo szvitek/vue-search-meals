@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Meal List</div>
+  <div>By Ingredient</div>
 </template>
 
 <style scoped></style>

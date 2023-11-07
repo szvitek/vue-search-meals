@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMealStore } from '@/stores/meals'
+import { storeToRefs } from 'pinia'
+
+const mealStore = useMealStore()
+const { meals } = storeToRefs(mealStore)
+console.log('meals', meals)
+</script>
 
 <template>
   <main>

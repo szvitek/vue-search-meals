@@ -53,3 +53,10 @@ export interface Meal {
   strCreativeCommonsConfirmed?: string
   dateModified?: string
 }
+
+export interface Ingredient {
+  idIngredient: string
+  strIngredient: string
+  strDescription?: string
+  strType?: string
+}

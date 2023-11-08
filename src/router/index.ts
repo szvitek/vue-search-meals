@@ -3,6 +3,7 @@ import MealsByLetterView from '@/views/MealsByLetterView.vue'
 import MealsByNameView from '@/views/MealsByNameView.vue'
 import MealsByIngredientView from '@/views/MealsByIngredientView.vue'
 import MealDetailsView from '@/views/MealDetailsView.vue'
+import IngredientsView from '@/views/IngredientsView.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
@@ -17,7 +18,12 @@ const routes: RouteRecordRaw[] = [
     component: MealsByNameView
   },
   {
-    path: '/by-ingredient/:ingredient?',
+    path: '/ingredients',
+    name: 'ingredients',
+    component: IngredientsView
+  },
+  {
+    path: '/by-ingredient/:ingredient',
     name: 'byIngredient',
     component: MealsByIngredientView
   },

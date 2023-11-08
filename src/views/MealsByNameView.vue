@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useMealStore } from '@/stores/meals'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
-import MealItem from '@/components/MealItem.vue';
+import MealList from '@/components/MealList.vue'
 
 const mealStore = useMealStore()
 const { searchMeals } = mealStore
@@ -39,20 +39,7 @@ onMounted(() => {
       @keydown.enter="search"
     />
   </div>
-  <div v-if="isLoading" class="animate-pulse h-full flex items-center justify-center">
-    <h1>Loading...</h1>
-  </div>
-  <template v-else>
-    <div
-      v-if="searchedMeals?.length"
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-8"
-    >
-      <MealItem v-for="meal of searchedMeals" :key="meal.idMeal" :meal="meal" />
-    </div>
-    <div v-else class="flex items-center justify-center flex-grow flex-1">
-      <h1>No results...</h1>
-    </div>
-  </template>
+  <MealList :meals="searchedMeals" :is-loading="isLoading" :display-results="!!route.params.name" />
 </template>
 
 <style scoped></style>

@@ -1,14 +1,22 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Meal } from '@/types'
+import type { Ingredient, Meal } from '@/types'
 import axiosClient from '@/axiosClient'
 
 export const useMealStore = defineStore('meal', () => {
+  const ingredients = ref<Ingredient[] | null>(null)
   const meal = ref<Meal | null>(null)
   const meals = ref<Meal[]>([])
   const searchedMeals = ref<Meal[]>([])
   const mealsByLetter = ref<Meal[] | null>([])
   const mealsByIngredients = ref<Meal[]>([])
+
+  async function getIngredients() {
+    const {
+      data: { meals }
+    } = await axiosClient.get(`list.php?i=list`)
+    ingredients.value = meals || null
+  }
 
   async function searchMeals(keyword: string) {
     const {
@@ -39,11 +47,13 @@ export const useMealStore = defineStore('meal', () => {
   }
 
   return {
+    ingredients,
     meal,
     meals,
     searchedMeals,
     mealsByLetter,
     mealsByIngredients,
+    getIngredients,
     searchMeals,
     searchMealsByLetter,
     searchMealsByIngredient,

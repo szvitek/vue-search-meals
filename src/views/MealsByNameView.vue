@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useMealStore } from '@/stores/meals'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
+import YouTubeButton from '@/components/YouTubeButton.vue';
 
 const mealStore = useMealStore()
 const { searchMeals } = mealStore
@@ -47,7 +48,7 @@ onMounted(() => {
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-8"
     >
       <div v-for="meal of searchedMeals" :key="meal.idMeal" class="bg-white shadow rounded-xl">
-        <RouterLink to="/">
+        <RouterLink :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
           <img
             :src="meal.strMealThumb"
             :alt="meal.strMeal"
@@ -61,12 +62,7 @@ onMounted(() => {
             obcaecati minima consequuntur, aliquam sint distinctio optio incidunt.
           </p>
           <div class="flex">
-            <a
-              :href="meal.strYoutube"
-              target="_blank"
-              class="px-3 py-2 rounded border-2 border-red-600 bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
-              >Youtube</a
-            >
+            <YouTubeButton :href="meal.strYoutube!" />
           </div>
         </div>
       </div>

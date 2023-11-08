@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useMealStore } from '@/stores/meals'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
-import YouTubeButton from '@/components/YouTubeButton.vue';
+import MealItem from '@/components/MealItem.vue';
 
 const mealStore = useMealStore()
 const { searchMeals } = mealStore
@@ -47,25 +47,7 @@ onMounted(() => {
       v-if="searchedMeals?.length"
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-8"
     >
-      <div v-for="meal of searchedMeals" :key="meal.idMeal" class="bg-white shadow rounded-xl">
-        <RouterLink :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
-          <img
-            :src="meal.strMealThumb"
-            :alt="meal.strMeal"
-            class="rounded-t-xl w-full h-48 object-cover"
-          />
-        </RouterLink>
-        <div class="p-3">
-          <h3 class="font-bold truncate">{{ meal.strMeal }}</h3>
-          <p class="my-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis dolorem porro
-            obcaecati minima consequuntur, aliquam sint distinctio optio incidunt.
-          </p>
-          <div class="flex">
-            <YouTubeButton :href="meal.strYoutube!" />
-          </div>
-        </div>
-      </div>
+      <MealItem v-for="meal of searchedMeals" :key="meal.idMeal" :meal="meal" />
     </div>
     <div v-else class="flex items-center justify-center flex-grow flex-1">
       <h1>No results...</h1>

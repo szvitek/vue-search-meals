@@ -11,6 +11,18 @@ export const useMealStore = defineStore('meal', () => {
   const mealsByLetter = ref<Meal[] | null>([])
   const mealsByIngredients = ref<Meal[]>([])
 
+  async function getRandomMeals() {
+    const getRandomMeal = () => axiosClient.get(`random.php`)
+    const promises = []
+
+    for (let i = 0; i < 8; i++) {
+      promises.push(getRandomMeal())
+    }
+
+    const results = await Promise.all<{ data: { meals: Meal[] } }>(promises)
+    meals.value = results.map(({ data: { meals } }) => meals[0])
+  }
+
   async function getIngredients() {
     const {
       data: { meals }
@@ -53,6 +65,7 @@ export const useMealStore = defineStore('meal', () => {
     searchedMeals,
     mealsByLetter,
     mealsByIngredients,
+    getRandomMeals,
     getIngredients,
     searchMeals,
     searchMealsByLetter,

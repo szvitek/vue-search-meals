@@ -31,11 +31,14 @@ onMounted(() => {
 
 <template>
   <div class="p-8 pb-0">
+    <h1 class="text-4xl font-bold mb-4 text-orange-500">Search Meals by Name</h1>
+  </div>
+  <div class="px-8 pb-5">
     <input
       v-model="mealInput"
       type="text"
       placeholder="Search for meals"
-      class="rounded border-2 border-gray-200 w-full"
+      class="rounded border-2 border-gray-200 focus:ring-orange-500 focus:border-orange-500 w-full"
       @keydown.enter="search"
     />
   </div>

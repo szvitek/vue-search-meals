@@ -4,10 +4,10 @@
       <h1>Loading...</h1>
     </div>
     <template v-else>
-      <div v-if="!meals?.length" class="flex items-center justify-center flex-grow flex-1">
+      <div v-if="!meals?.length" class="flex items-center justify-center flex-grow flex-1 p-8">
         <h1>No results...</h1>
       </div>
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-8">
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-8">
         <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" />
       </div>
     </template>

@@ -27,22 +27,24 @@ const filteredIngredients = computed(() => {
 </script>
 
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-bold mb-4">Ingredients</h1>
+  <div class="p-8 pb-0">
+    <h1 class="text-4xl font-bold mb-4 text-orange-500">Ingredients</h1>
+  </div>
+  <div class="px-8">
     <input
       v-model="keyword"
       type="text"
       placeholder="Search for Ingredients"
-      class="rounded border-2 border-gray-200 w-full mb-3"
+      class="rounded border-2 border-gray-200 focus:ring-orange-500 focus:border-orange-500 w-full mb-3"
     />
-    <div
-      v-for="ingredient of filteredIngredients"
-      :key="ingredient.idIngredient"
-      class="bg-white rounded p-3 mb-3 shadow"
-    >
-      <RouterLink :to="{ name: 'byIngredient', params: { ingredient: ingredient.strIngredient } }">
-        <h3 class="text-2xl font-bold mb-2">{{ ingredient.strIngredient }}</h3>
-        <p>{{ ingredient.strDescription || 'N/A' }}</p>
+    <div class="grid gird-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+      <RouterLink
+        v-for="ingredient of filteredIngredients"
+        :key="ingredient.idIngredient"
+        :to="{ name: 'byIngredient', params: { ingredient: ingredient.strIngredient } }"
+        class="block bg-white rounded p-3 mg-3 shadow hover:text-orange-500"
+      >
+        <h3 class="text-2xl font-bold">{{ ingredient.strIngredient }}</h3>
       </RouterLink>
     </div>
   </div>

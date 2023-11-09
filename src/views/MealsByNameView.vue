@@ -4,6 +4,7 @@ import { useMealStore } from '@/stores/meals'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import MealList from '@/components/MealList.vue'
+import SearchInput from '@/components/SearchInput.vue'
 
 const mealStore = useMealStore()
 const { searchMeals } = mealStore
@@ -33,15 +34,13 @@ onMounted(() => {
   <div class="p-8 pb-0">
     <h1 class="text-4xl font-bold mb-4 text-orange-500">Search Meals by Name</h1>
   </div>
-  <div class="px-8 pb-5">
-    <input
-      v-model="mealInput"
-      type="text"
-      placeholder="Search for meals"
-      class="rounded border-2 border-gray-200 focus:ring-orange-500 focus:border-orange-500 w-full"
-      @keydown.enter="search"
-    />
-  </div>
+  <SearchInput
+    :placeholder="'Search for meals'"
+    :keyword="mealInput"
+    :action="search"
+    @update:model-value="(updatedInput) => (mealInput = updatedInput)"
+    with-button
+  />
   <MealList :meals="searchedMeals" :is-loading="isLoading" :display-results="!!route.params.name" />
 </template>
 

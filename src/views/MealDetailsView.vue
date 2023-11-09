@@ -65,12 +65,12 @@ onMounted(async () => {
         </ol>
       </div>
     </div>
-    <div class="mt-4">
+    <div class="mt-4 flex flex-wrap gap-3">
       <YouTubeButton :href="meal.strYoutube!">Go To Youtube</YouTubeButton>
       <a
         :href="meal.strSource"
         target="_blank"
-        class="ml-3 px-3 py-2 rounded border-2 border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-600 transition-colors duration-200"
+        class="px-3 py-2 rounded border-2 border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-600 transition-colors duration-200"
       >
         View Original Source
       </a>
